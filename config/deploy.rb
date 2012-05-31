@@ -7,9 +7,13 @@ set :deploy_to, "/var/www/html/cap/"
 set :user, "ec2-user"
 set :scm_passphrase, "globalreach"
 set :use_sudo, true
+set :copy_exclude, [".git", "Capfile", "config"]
 ssh_options[:forward_agent] = true
 server "107.20.143.151",  :deploy
 default_run_options[:pty] = true
+
+role :app, '107.20.143.151'
+role :web, '107.20.143.151'
 
 namespace :deploy do
   task :start do ; end
